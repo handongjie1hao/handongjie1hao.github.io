@@ -1,0 +1,8 @@
+{
+  "name": "unionapp",
+  "ios_identifier": "io.ionic.starter",
+  "android_identifier": "io.ionic.starter",
+  "update": "start",
+  "content_url": "https://www.izile.cn/www/",
+  "release": "2018.07.10-11.29.22"
+}
