@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html >
-<input id='in' style='width:100%;height:200px;'  />
+<input id='in' style='width:100%;height:200px;'>
 <br>
 <button onclick = 'go()'> 分割</button>
-<div  id='out'>
-</div>
+<br>
+<input id='out' style='width:100%;height:200px;'>
 <script type="text/javascript">
 	function go(){
-		document.getElementById('out').innerHTML=(document.getElementById('in').value.split('').toString().replace(/\,/g,' '));
+		var invalue=document.getElementById('in').value;
+		// var inreplace=invalue.replace(/\ /g,'^').replace(/\,/g,'#').split('').toString().replace(/\,/g,' ').replace(/\^/g,' ').replace(/\#/g,',');
+		var inreplace=invalue.replace(/\ /g,'^').replace(/\,/g,'#').split('');
+		var outStr='';
+		for(var j=0;j<inreplace.length;j++){
+			if(j==(inreplace.length-1)){
+				outStr+=inreplace[j];
+			}else{
+				outStr+=inreplace[j]+'`'
+			}
+		}
+		document.getElementById('out').value=outStr.replace(/\,/g,' ').replace(/\^`/g,' ').replace(/\#`/g,', ').replace(/\`/g,' ');
 	}
 
 </script>
