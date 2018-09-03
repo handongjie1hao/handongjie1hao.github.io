@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html >
+<body style='font-size: 1em;'>
 <input id='in' style='width:100%;height:200px;'>
 <br>
-<button onclick = 'go()'> 分割</button>
+<div class='buttonDiv' style='margin: 10px;'>
+	<button onclick = 'go()' style='background-color: black;color: aliceblue;height:28px;'> 大写单词分割</button>
+
+	<button onclick = 'count()' style='background-color:blueviolet;color: aliceblue;height:28px;'> 小写单词计数</button>
+
+	<button onclick = 'revise()' style='background-color:brown;color: aliceblue;height:28px;'> 小写修改标点位</button>
+</div>
 <br>
 <input id='out' style='width:100%;height:200px;'>
+</body>
 <script type="text/javascript">
 	function go(){
 		var invalue=document.getElementById('in').value;
@@ -20,6 +28,35 @@
 		}
 		document.getElementById('out').value=outStr.replace(/\,/g,' ').replace(/\^`/g,' ').replace(/\#`/g,', ').replace(/\`/g,' ').replace(/\^/g,' ');
 	}
+	function count(){
+		var invalue=document.getElementById('in').value;
+		// var inreplace=invalue.replace(/\ /g,'^').replace(/\,/g,'#').split('').toString().replace(/\,/g,' ').replace(/\^/g,' ').replace(/\#/g,',');
+		var inreplace=invalue.replace(/\ /g,'^').replace(/\,/g,'#').split('');
+		var outStr='';
+		for(var j=0;j<inreplace.length;j++){
+			if(j==(inreplace.length-1)){
+				outStr+=inreplace[j];
+			}else{
+				outStr+=inreplace[j]+'`'
+			}
+		}
+		document.getElementById('out').value=outStr.replace(/\,/g,' ').replace(/\^`/g,' ').replace(/\#`/g,', ').replace(/\`/g,' ').replace(/\^/g,' ');
+	}
+	function revise(){
+		var invalue=document.getElementById('in').value;
+		// var inreplace=invalue.replace(/\ /g,'^').replace(/\,/g,'#').split('').toString().replace(/\,/g,' ').replace(/\^/g,' ').replace(/\#/g,',');
+		var inreplace=invalue.replace(/\ /g,'^').replace(/\,/g,'#').split('');
+		var outStr='';
+		for(var j=0;j<inreplace.length;j++){
+			if(j==(inreplace.length-1)){
+				outStr+=inreplace[j];
+			}else{
+				outStr+=inreplace[j]+'`'
+			}
+		}
+		document.getElementById('out').value=outStr.replace(/\,/g,' ').replace(/\^`/g,' ').replace(/\#`/g,', ').replace(/\`/g,' ').replace(/\^/g,' ');
+	}
 
 </script>
+
 </html>
