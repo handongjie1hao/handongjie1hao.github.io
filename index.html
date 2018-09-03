@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html >
 <body style='font-size: 1em;'>
-<input id='in' style='width:100%;height:200px;'>
+<textarea id='in' style='width:100%;height:200px;'></textarea>
 <br>
 <div class='buttonDiv' style='margin: 10px;'>
 	<button onclick = 'go()' style='background-color: black;color: aliceblue;height:28px;'> 大写单词分割</button>
@@ -9,9 +9,11 @@
 	<button onclick = 'count()' style='background-color:blueviolet;color: aliceblue;height:28px;'> 小写单词计数</button>
 
 	<button onclick = 'revise()' style='background-color:brown;color: aliceblue;height:28px;'> 小写修正标点位</button>
+
+	<button onclick = 'final()' style='background-color:cornflowerblue;color: aliceblue;height:28px;'> 一步到位</button>
 </div>
 <br>
-<input id='out' style='width:100%;height:200px;'>
+<textarea id='out' style='width:100%;height:200px;'></textarea>
 </body>
 <script type="text/javascript">
 	function go(){
@@ -41,9 +43,39 @@
 	}
 	function revise(){
 		var invalue=document.getElementById('in').value;
-		var inreplace=invalue.replace(/\ {1,10}/g,' ').replace(/\W /g,function(word){return word.replace(/\ /g,'')}).replace(/\ \W/g,function(word){return word.replace(/\ /g,'')}).replace(/\W/g,function(word){return ' '+word.replace(/\ /g,'')+' '});
+		var inreplace=invalue.replace(/\ {1,10}/g,' ').replace(/\W /g,function(word){return word.replace(/\ /g,'')}).replace(/\ \W/g,function(word){return word.replace(/\ /g,'')}).replace(/\W/g,function(word){return ' '+word.replace(/\ /g,'')+' '}).replace(/\s+/g, ' ');
 		
 		document.getElementById('out').value=inreplace;
+	}
+	function final(){
+		var invalue=document.getElementById('in').value;
+		var inreplace1=invalue.replace(/\ {1,10}/g,' ').replace(/\W /g,function(word){return word.replace(/\ /g,'')}).replace(/\ \W/g,function(word){return word.replace(/\ /g,'')}).replace(/\W/g,function(word){return ' '+word.replace(/\ /g,'')+' '}).replace(/\s+/g, ' ');
+		
+		var arr=inreplace1.replace(/\W/g,'^').replace(/\^{1,10}/g,'^').split('^');
+		var length=arr.length;
+		for(var j=0;j<arr.length;j++){
+			if(arr[j]==''){
+				length--;
+			}
+		}
+		var inreplace11=inreplace1.toUpperCase();
+		
+
+		var inreplace12=inreplace11.replace(/\ /g,'^').replace(/\,/g,'#').split('');
+		var inreplace13='';
+		for(var j=0;j<inreplace12.length;j++){
+			if(j==(inreplace12.length-1)){
+				inreplace13+=inreplace12[j];
+			}else{
+				inreplace13+=inreplace12[j]+'`'
+			}
+		}
+		var inreplace2 =inreplace13.replace(/\,/g,' ').replace(/\^`/g,' ').replace(/\#`/g,', ').replace(/\`/g,' ').replace(/\^/g,' ')
+		var html=inreplace1+"\n"+inreplace2+"\n"+length;
+		document.getElementById('out').value=html;
+
+
+
 	}
 
 </script>
