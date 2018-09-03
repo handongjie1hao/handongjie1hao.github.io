@@ -30,8 +30,14 @@
 	}
 	function count(){
 		var invalue=document.getElementById('in').value;
-		var inreplace=invalue.replace(/\W/g,'^').replace(/\^{1,10}/g,'^').split('^').length;
-		document.getElementById('out').value="总计单词"+inreplace+"个:"+invalue.replace(/\W/g,'^').replace(/\^{1,10}/g,'^');
+		var arr=invalue.replace(/\W/g,'^').replace(/\^{1,10}/g,'^').split('^');
+		var length=arr.length;
+		for(var j=0;j<arr.length;j++){
+			if(arr[j]==''){
+				length--;
+			}
+		}
+		document.getElementById('out').value="总计单词"+length+"个:"+invalue.replace(/\W/g,'^').replace(/\^{1,10}/g,'^');
 	}
 	function revise(){
 		var invalue=document.getElementById('in').value;
