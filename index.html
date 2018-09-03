@@ -41,7 +41,7 @@
 	}
 	function revise(){
 		var invalue=document.getElementById('in').value;
-		var inreplace=invalue.replace(/\{1,10}/g,' ').replace(/\, /g,',').replace(/\ ,/g,',').replace(/\. /g,'.').replace(/\ \./g,'.').replace(/\./g,' . ').replace(/\,/g,' , ');
+		var inreplace=invalue.replace(/\ {1,10}/g,' ').replace(/\W /g,function(word){return word.replace(/\ /g,'')}).replace(/\ \W/g,function(word){return word.replace(/\ /g,'')}).replace(/\W/g,function(word){return ' '+word.replace(/\ /g,'')+' '});
 		
 		document.getElementById('out').value=inreplace;
 	}
