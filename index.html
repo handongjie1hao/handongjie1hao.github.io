@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html >
-<body style='font-size: 1em;'>
+<body style='font-size: 1em;' onclick = 'hideNavigationBar()'>
 <textarea id='in' style='width:100%;height:200px;'></textarea>
 <br>
 <div class='buttonDiv' style='margin: 10px;'>
@@ -77,6 +77,12 @@
 
 
 	}
+	function hideNavigationBar(){
+		Android.hideNavigationBar();
+		Android.showToast("已全屏");
+	}
+	
+		
 
 </script>
 
